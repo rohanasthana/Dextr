@@ -28,12 +28,14 @@ python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 
 ### DARTS
 - Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our DARTS experiments.
-- Run the following commands for DARTS experiments:
+- Run the following commands to search in the DARTS space:
 
 ```bash
 cd NASBench201
 bash exp_scripts/zerocostpt_darts_pipeline.sh
 ```
+
+- Train the searched network using this repository- (https://github.com/chenwydj/DARTS_evaluation)
 
 ### AutoFormer
 
