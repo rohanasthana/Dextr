@@ -19,5 +19,7 @@ Eg-
 
 ### NASBench-201
 
-- We use the MeCo repository (https://github.com/HamsterMimi/MeCo) for our NASBench201 experiments.
-- Run NASBench201/correlation/NAS_Bench_201.py to conduct NASBench201 experiments
+- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our NASBench201 experiments.
+- Run the following commands for NASBench201 experiments 
+> cd NASBench201/correlation
+> python NAS_Bench_201.py
