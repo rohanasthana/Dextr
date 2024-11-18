@@ -32,7 +32,15 @@ python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 
 ```bash
 cd NASBench201
-bash /home/hu15nagy/Documents/ZCProxy/Dextr/NASBench201/exp_scripts/zerocostpt_darts_pipeline.sh
+bash exp_scripts/zerocostpt_darts_pipeline.sh
 ```
 
 ### AutoFormer
+
+- Follow the TF-TAS repository (https://github.com/decemberzhou/TF_TAS/tree/main) to set up the environment for AutoFormer experiments.
+- Run the following commands for the AutoFormer experiments:
+
+```bash
+cd AutoFormer
+bash search_autoformer.sh
+```
