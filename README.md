@@ -35,7 +35,7 @@ cd NASBench201
 bash exp_scripts/zerocostpt_darts_pipeline.sh
 ```
 
-- Train the searched network using this repository- (https://github.com/chenwydj/DARTS_evaluation)
+- Train the searched network on ImageNet using this repository- (https://github.com/chenwydj/DARTS_evaluation)
 
 ### AutoFormer
 
