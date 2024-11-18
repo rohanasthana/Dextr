@@ -6,7 +6,7 @@
 
 - To reproduce our results, follow the instructions from NASLib (https://github.com/automl/NASLib/tree/zerocost) to set up the experiment.
 
-- Copy the folder 'naslib' to the folder /NASLib/
+- Copy the folder 'naslib' and 'scripts' to the folder /NASLib/
 
 - Our proxy Dextr is implemented in the file NASLib/naslib/predictors/pruners/measures/dextr.py
 
