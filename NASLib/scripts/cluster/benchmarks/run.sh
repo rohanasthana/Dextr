@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -p bosch_cpu-cascadelake #,ml_gpu-rtx2080 #ml_gpu-rtx2080     # bosch_gpu-rtx2080    #alldlc_gpu-rtx2080     # partition (queue)
-#SBATCH -o logs/%x.mem.%A-%a.%N.out       # STDOUT  %A will be replaced by the SLURM_ARRAY_JOB_ID value
-#SBATCH -e logs/%x.mem.%A-%a.%N.err       # STDERR  %A will be replaced by the SLURM_ARRAY_JOB_ID value
+#SBATCH -o logs/%x.memMEM_FOR_JOB.%A-%a.%N.out       # STDOUT  %A will be replaced by the SLURM_ARRAY_JOB_ID value
+#SBATCH -e logs/%x.memMEM_FOR_JOB.%A-%a.%N.err       # STDERR  %A will be replaced by the SLURM_ARRAY_JOB_ID value
 #SBATCH -a 0-1000:1000 # array size
-#SBATCH --mem=
+#SBATCH --mem=MEM_FOR_JOB
 #SBATCH --job-name="transbench101_micro-room_layout-zen"
 
 echo "Workingdir: $PWD";
