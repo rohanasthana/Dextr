@@ -27,10 +27,12 @@ python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 ## NAS Experiments
 
 ### DARTS
-- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our NASBench201 experiments.
-- Run the following commands for NASBench201 experiments:
+- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our DARTS experiments.
+- Run the following commands for DARTS experiments:
 
 ```bash
 cd NASBench201
-
+bash /home/hu15nagy/Documents/ZCProxy/Dextr/NASBench201/exp_scripts/zerocostpt_darts_pipeline.sh
 ```
+
+### AutoFormer
