@@ -6,7 +6,7 @@ seed=${seed:-999}
 gpu=${gpu:-"0"}
 pool_size=${pool_size:-10}
 space=${space:-s5}
-metric=${metric:-'zico'}
+metric=${metric:-'dextr'}
 edge_decision=${edge_decision:-'random'}
 validate_rounds=${validate_rounds:-10}
 learning_rate=${learning_rate:-0.025}
@@ -23,8 +23,8 @@ echo 'id:' $id 'seed:' $seed 'dataset:' $dataset 'space:' $space
 echo 'proj crit:' $metric
 echo 'gpu:' $gpu
 
-cd /home/hu15nagy/Documents/ZCProxy/MeCo_main
-cd sota/cnn
+pwd
+cd ./NASBench201/sota/cnn
 python3 networks_proposal.py \
     --search_space $space --dataset $dataset \
     --batch_size 16 \
@@ -40,15 +40,3 @@ python3 post_validate.py\
     --batch_size 64\
     --edge_decision $edge_decision --proj_crit $metric \
     --validate_rounds $validate_rounds\
-
-#cd ../sota/cnn
-#python3 train.py \
- ##   --seed $seed --gpu $gpu --save $id \
-   # --arch ../../experiments/sota/$space-valid-$id-$seed-$pool_size-$validate_rounds-$metric\
-    #--resume_epoch 1000 \
-   # --dataset $dataset \
-   # --auxiliary --cutout \
-   # --batch_size 96 --learning_rate $learning_rate \
-   # --init_channels 36 --layers 20\
-   # --from_dir\
-   # --resume_expid eval/zerocostpt_darts_pipeline-s5-valid-zerocostpt_darts_pipeline-999-10-10-dextr-999-cutout-16-1.0-auxiliary-0.4

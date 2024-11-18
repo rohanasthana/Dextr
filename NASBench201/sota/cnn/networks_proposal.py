@@ -24,7 +24,7 @@ from sota.cnn.model_search_imagenet_proj import ImageNetNetworkProj
 # from optimizers.darts.architect import Architect as DartsArchitect
 from nasbench201.architect_ig import Architect
 from sota.cnn.spaces import spaces_dict
-from foresight.pruners import *
+from correlation.foresight.pruners import *
 
 from torch.utils.tensorboard import SummaryWriter
 from sota.cnn.init_projection import pt_project
@@ -62,9 +62,9 @@ parser.add_argument('--pool_size', type=int, default=10, help='number of model t
 
 ## projection
 parser.add_argument('--edge_decision', type=str, default='random', choices=['random','reverse', 'order', 'global_op_greedy', 'global_op_once', 'global_edge_greedy', 'global_edge_once', 'sample'], help='used for both proj_op and proj_edge')
-parser.add_argument('--proj_crit_normal', type=str, default='meco', choices=['loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
-parser.add_argument('--proj_crit_reduce', type=str, default='meco', choices=['loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
-parser.add_argument('--proj_crit_edge',   type=str, default='meco', choices=['loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
+parser.add_argument('--proj_crit_normal', type=str, default='meco', choices=['dextr','loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
+parser.add_argument('--proj_crit_reduce', type=str, default='meco', choices=['dextr','loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
+parser.add_argument('--proj_crit_edge',   type=str, default='meco', choices=['dextr','loss', 'acc', 'jacob', 'comb', 'synflow', 'snip', 'fisher', 'var', 'cor', 'norm', 'grad_norm', 'grasp', 'jacob_cov', 'meco', 'zico'])
 parser.add_argument('--proj_mode_edge', type=str, default='reg', choices=['reg'],
                     help='edge projection evaluation mode, reg: one edge at a time')
 args = parser.parse_args()

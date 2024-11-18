@@ -23,3 +23,14 @@ python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar10
 python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar100
 python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 ```
+
+## NAS Experiments
+
+### DARTS
+- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our NASBench201 experiments.
+- Run the following commands for NASBench201 experiments:
+
+```bash
+cd NASBench201
+
+```

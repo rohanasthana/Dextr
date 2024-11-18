@@ -18,11 +18,10 @@ from nas_201_api import NASBench201API as API
 from pycls.models.nas.nas import NetworkImageNet, NetworkCIFAR
 from pycls.models.nas.genotypes import Genotype
 import nasbench201.utils as ig_utils
-from foresight.pruners import *
+from correlation.foresight.pruners import *
 from Scorers.scorer import Jocab_Scorer
 import torchvision.transforms as transforms
 import argparse
-from mobilenet_search_space.retrain_architecture.model import Network
 from torch.utils.tensorboard import SummaryWriter
 from sota.cnn.hdf5 import H5Dataset
 parser = argparse.ArgumentParser("sota")
@@ -43,7 +42,7 @@ parser.add_argument('--cutout_prob', type=float, default=1.0, help='cutout proba
 parser.add_argument('--init_channels', type=int, default=16, help='num of init channels')
 parser.add_argument('--layers', type=int, default=8, help='total number of layers')
 parser.add_argument('--validate_rounds', type=int, default=10, help='score round for networks')
-parser.add_argument('--proj_crit', type=str, default='jacob', choices=['loss', 'acc', 'var', 'cor', 'norm', 'jacob', 'snip', 'fisher', 'synflow', 'grad_norm', 'grasp', 'jacob_cov', 'comb', 'meco', 'zico'], help='criteria for projection')
+parser.add_argument('--proj_crit', type=str, default='jacob', choices=['dextr','loss', 'acc', 'var', 'cor', 'norm', 'jacob', 'snip', 'fisher', 'synflow', 'grad_norm', 'grasp', 'jacob_cov', 'comb', 'meco', 'zico'], help='criteria for projection')
 parser.add_argument('--edge_decision', type=str, default='random', choices=['random','reverse', 'order', 'global_op_greedy', 'global_op_once', 'global_edge_greedy', 'global_edge_once'], help='which edge to be projected next')
 args = parser.parse_args()
 

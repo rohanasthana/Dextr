@@ -58,7 +58,7 @@ def load_all():
     # from . import var
     # from . import cor
     # from . import norm
-    from . import meco
+    from . import dextr
     # from . import zico
     # from . import gradsign
     # from . import ntk

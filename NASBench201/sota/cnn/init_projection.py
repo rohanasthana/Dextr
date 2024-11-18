@@ -5,7 +5,7 @@ import torch
 import logging
 import torch.utils
 from copy import deepcopy
-from foresight.pruners import *
+from correlation.foresight.pruners import *
 
 torch.set_printoptions(precision=4, sci_mode=False)
 
