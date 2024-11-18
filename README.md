@@ -7,8 +7,10 @@
 - Copy all the subfolders of NASLib to the folder /NASLib/
 - Our proxy Dextr is implemented in the file NASLib/naslib/predictors/pruners/measures/dextr.py
 - Run the correlation experiments using scripts from the folder- NASLib/scripts/cluster/benchmarks
-Eg- 
-> bash NAS_suite/NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr
+
+```bash
+bash NAS_suite/NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr
+```
 
 ### NASBench-201
 - Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our NASBench201 experiments.
