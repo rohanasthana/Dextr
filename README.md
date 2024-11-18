@@ -9,7 +9,9 @@
 - Run the correlation experiments using scripts from the folder- NASLib/scripts/cluster/benchmarks
 
 ```bash
-bash NAS_suite/NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr
+bash NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr #TransNASBench101-micro
+bash NASLib/scripts/cluster/benchmarks/run_nb101.sh correlation dextr #NASBench-101
+bash NASLib/scripts/cluster/benchmarks/run_nb301.sh correlation dextr #NASBench-301
 ```
 
 ### NASBench-201
@@ -17,5 +19,7 @@ bash NAS_suite/NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr
 - Run the following commands for NASBench201 experiments:
 ```bash
 cd NASBench201/correlation
-python NAS_Bench_201.py
+python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar10
+python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar100
+python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 ```

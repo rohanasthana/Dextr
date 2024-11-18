@@ -83,7 +83,8 @@ def get_score(net, x, device, measure='dextr'):
     if (torch.isnan(results) or torch.isinf(results)):
         return svd.item(), result_list, max_svd_list
 
-    print('SVD: ',svd)
+    print('\n')
+    print('Sum of the Inversed Condition Number: ',svd)
     print('Curvature: ',curvature)
     print('Dextr: ',results.item())
     return results.item(), result_list, max_svd_list
@@ -145,7 +146,6 @@ if __name__ == '__main__':
     
 
     api = create(None, args.search_space, fast_mode=True, verbose=False)
-    #api = API('/home/asthana/Documents/ZCProxy/nas201_data/NAS-Bench-201-v1_0-e61699.pth')
 
     torch.manual_seed(args.seed)
     torch.backends.cudnn.deterministic = True

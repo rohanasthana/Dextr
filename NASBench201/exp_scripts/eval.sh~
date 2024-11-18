@@ -1,14 +1,14 @@
 #!/bin/bash
 script_name=`basename "$0"`
 id=${script_name%.*}
-dataset=${dataset:-cifar100}
-seed=${seed:-2}
+dataset=${dataset:-cifar10}
+seed=${seed:-123}
 gpu=${gpu:-"auto"}
-arch=${arch:-"s5-valid-zerocostpt_darts_pipeline_c100-111-100-100-cifar100-svd"}
+arch=${arch:-"/home/asthana/Documents/ZCProxy/MeCo_main/experiments/sota/s5-valid-zerocostpt_darts_pipeline-123-10-100-svd"}
 batch_size=${batch_size:-96}
 learning_rate=${learning_rate:-0.025}
-resume_expid=${resume_expid:-'/home/asthana/Documents/ZCProxy/MeCo_main/experiments/sota/cifar100-search-zerocostpt_darts_pipeline_c100-s5-111-100-svd'}
-resume_epoch=${resume_epoch:-0}
+resume_expid=${resume_expid:-'cif10exp'}
+resume_epoch=${resume_epoch:-600}
 
 while [ $# -gt 0 ]; do
     if [[ $1 == *"--"* ]]; then
@@ -29,11 +29,10 @@ echo 'learning_rate:' $learning_rate
 
 
 cd ../sota/cnn
-python train.py \
+python3 train.py \
     --arch $arch \
     --dataset $dataset \
     --auxiliary --cutout \
     --seed $seed --save $id --gpu $gpu \
     --batch_size $batch_size --learning_rate $learning_rate \
     --resume_expid $resume_expid --resume_epoch $resume_epoch \
-    --init_channels 16 --layers 8 \

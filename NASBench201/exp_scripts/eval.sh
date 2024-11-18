@@ -1,13 +1,13 @@
 #!/bin/bash
 script_name=`basename "$0"`
 id=${script_name%.*}
-dataset=${dataset:-cifar10}
-seed=${seed:-2}
+dataset=${dataset:-ImageNet16}
+seed=${seed:-123}
 gpu=${gpu:-"auto"}
-arch=${arch:-"none"}
+arch=${arch:-"/home/hu15nagy/Documents/ZCProxy/MeCo_main/experiments/sota/s5-valid-zerocostpt_darts_pipeline_imagenet-123-20-100-imagenet-svd"}
 batch_size=${batch_size:-96}
 learning_rate=${learning_rate:-0.025}
-resume_expid=${resume_expid:-'none'}
+resume_expid=${resume_expid:-''}
 resume_epoch=${resume_epoch:-0}
 
 while [ $# -gt 0 ]; do
