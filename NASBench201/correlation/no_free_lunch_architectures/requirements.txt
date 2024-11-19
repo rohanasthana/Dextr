@@ -1,0 +1,9 @@
+loralib==0.1.1
+matplotlib==2.1.1
+numpy==1.13.3
+Pillow==9.5.0
+pyzmq==25.0.2
+thop==0.0.4.post2103010943
+torch==1.8.0+cu111
+torchvision==0.9.0+cu111
+tqdm==4.62.0
