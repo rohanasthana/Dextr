@@ -1,5 +1,3 @@
-mv NASLib/ NASLib_Dextr/
-git clone
 cd NASLib/
 sed -i 's/Cython==0.29.37/Cython==3.0.11/' requirements.txt
 pip install --upgrade pip setuptools wheel
