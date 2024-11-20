@@ -24,7 +24,7 @@ echo 'proj crit:' $metric
 echo 'gpu:' $gpu
 
 pwd
-cd ./NASBench201/sota/cnn
+cd  sota/cnn
 python3 networks_proposal.py \
     --search_space $space --dataset $dataset \
     --batch_size 16 \

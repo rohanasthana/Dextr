@@ -1,0 +1,16 @@
+2024-11-19 23:27:31,584 gpu device = 0
+2024-11-19 23:27:31,585 args = Namespace(batch_size=16, cutout=False, cutout_length=16, cutout_prob=1.0, data='../../data', dataset='cifar10', edge_decision='random', gpu='0', grad_clip=5, init_channels=16, layers=8, learning_rate=0.025, learning_rate_min=0.001, momentum=0.9, nesterov=True, pool_size=10, proj_crit_edge='dextr', proj_crit_normal='dextr', proj_crit_reduce='dextr', proj_mode_edge='reg', save='../../experiments/sota/cifar10-search-zerocostpt_darts_pipeline-s5-999-10-dextr', save_path='../../experiments/sota', search_space='s5', seed=999, train_portion=0.5, weight_decay=0.0003)
+2024-11-19 23:27:33,396 param size = 1.930618MB
+2024-11-19 23:27:34,249 1 MODEL HAS SEARCHED
+2024-11-19 23:27:34,290 project op
+2024-11-19 23:27:34,290 selected edge: 0 normal
+2024-11-19 23:29:17,569 best opid: 4
+2024-11-19 23:29:17,569 [3.6400511264801025, 3.7384161949157715, 3.795279026031494, 3.7241523265838623, 3.3615267276763916, 3.851585626602173, 3.9105567932128906]
+2024-11-19 23:29:17,569 selected edge: 12 reduce
+2024-11-19 23:30:57,292 best opid: 0
+2024-11-19 23:30:57,292 [3.717074394226074, 3.7660012245178223, 3.7846107482910156, 3.828212261199951, 3.7461845874786377, 3.8577024936676025, 3.8653206825256348]
+2024-11-19 23:30:57,294 project op
+2024-11-19 23:30:57,294 selected edge: 11 normal
+2024-11-19 23:32:35,127 best opid: 6
+2024-11-19 23:32:35,127 [3.854123592376709, 3.82794451713562, 3.9109723567962646, 3.8732028007507324, 3.9780936241149902, 4.051772117614746, 3.6245229244232178]
+2024-11-19 23:32:35,127 selected edge: 2 reduce

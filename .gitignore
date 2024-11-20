@@ -1,0 +1,10 @@
+NASBench201/correlation/_dataset
+NASBench201/data/cifar-10-batches-py/
+NASBench201/data
+
+NASLib/configs
+
+
+__pycache__/
+
+NASBench201/correlation/output/

@@ -1,0 +1,28 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: 
+      - master
+      - Develop
+  
+
+jobs:
+  run-all-files:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install naslib
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -e .[test]
+
+    - name: Run tests
+      run: |
+        cd tests/
+        python -m unittest discover -v

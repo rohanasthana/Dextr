@@ -1,0 +1,4 @@
+Looking in indexes: https://download.pytorch.org/whl/cu111
+Collecting torch
+  Downloading https://download.pytorch.org/whl/cu111/torch-1.10.2%2Bcu111-cp37-cp37m-linux_x86_64.whl (2137.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 GB 4.2 MB/s eta 0:00:00

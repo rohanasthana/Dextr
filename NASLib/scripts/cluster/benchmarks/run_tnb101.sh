@@ -19,7 +19,7 @@ else
 fi
 
 searchspaces=(transbench101_micro)
-datasets=(class_object class_scene jigsaw normal)
+datasets=(class_object) #class_scene jigsaw normal)
 
 start=0
 end=1000

@@ -4,7 +4,7 @@ from torch.nn.functional import normalize
 from torch import autograd
 # from utils import bn_resume_tracking, bn_stop_tracking
 from pdb import set_trace as bp
-from torchvision.models.feature_extraction import create_feature_extractor
+
 
 def get_curve_input(size_curve):
     n_interp, CHW = size_curve[0], size_curve[1:]
@@ -14,84 +14,54 @@ def get_curve_input(size_curve):
     curve_input.requires_grad_(True)
     return theta, curve_input
 
-def get_extrinsic_curvature_layer(hook, layer, curve_inputs, batch_size=1):
-    theta,curve_input = curve_inputs
+
+
+def get_extrinsic_curvature(network, curve_inputs=None, size_curve=None, batch_size=256, train_mode=True):
+    if curve_inputs:
+        theta, curve_input = curve_inputs
+    else:
+        theta, curve_input = get_curve_input(size_curve)
     kappa = 0
-    layer = layer.cuda()
+    network = network.cuda()
+    if train_mode:
+        network.train()
+    else:
+        network.eval()
+    network.zero_grad()
     _idx = 0
-    layer.register_forward_hook(None)
-    hook.remove()
+    #print(curve_input.shape)
     while _idx < len(curve_input):
-        output = layer(curve_input[_idx:_idx+batch_size])
+        output = network(curve_input[_idx:_idx+batch_size])
+        #output=output[1]
         output = output.reshape(output.size(0), -1)
         n, c = output.size()
         v_s = [] # 1st derivative
         a_s = [] # 2nd derivative
-        for coord in range(c):
-            v = autograd.grad(output[:, coord].sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
+        c_list = [np.random.randint(0, c) for _ in range(10)] #extract 10 random coordinates
+        for index in c_list:
+            v = autograd.grad(output[:, index].sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
             a = autograd.grad(v.sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
             v_s.append(v.detach().clone())
             a_s.append(a.detach().clone())
         v_s = torch.stack(v_s, 0).permute(1, 0) # batch_size x c
         a_s = torch.stack(a_s, 0).permute(1, 0) # batch_size x c
-        #print(v_s.shape, a_s.shape)
         vv = torch.einsum('nd,nd->n', v_s, v_s)
         aa = torch.einsum('nd,nd->n', a_s, a_s)
         va = torch.einsum('nd,nd->n', v_s, a_s)
         #print(vv.shape, aa.shape, va.shape)
         kappa += (vv**(-3/2) * (vv * aa - va ** 2).sqrt()).sum().item()
-        #print(f'kappa{kappa.shape}')
         #print(kappa)
-        torch.cuda.empty_cache()
-        _idx += batch_size
-    
-    return np.mean(kappa)
-
-def get_extrinsic_curvature_opt(network, curve_inputs=None, size_curve=None, batch_size=128, train_mode=True):
-    LE=0
-    if curve_inputs:
-        theta, curve_input = curve_inputs
-    else:
-        theta, curve_input = get_curve_input(size_curve)
-    kappa = []
-    network = network.cuda()
-    if train_mode:
-        network.train()
-    else:
-        network.eval()
-    network.zero_grad()
-    _idx = 0
-    while _idx < len(curve_input):
-        batch_input = curve_input[_idx:_idx+batch_size]
-        output = network(batch_input)
-        #output = output.clone()  # Create a copy of the output tensor
-        output = output.reshape(output.size(0), -1)
-        n, c = output.size()
-        v_s = [] # 1st derivative
-        a_s = [] # 2nd derivative
-        v = autograd.grad(output.sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
-        a = autograd.grad(v.sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
-        v_s.append(v.detach().clone())
-        a_s.append(a.detach().clone())
-        v_s = torch.stack(v_s, 0).permute(1, 0) # batch_size x c
-        a_s = torch.stack(a_s, 0).permute(1, 0) # batch_size x c
-        vv = torch.einsum('nd,nd->n', v_s, v_s)
-        #gE=vv.sqrt()
-        #LE+=gE.sum()
-        aa = torch.einsum('nd,nd->n', a_s, a_s)
-        va = torch.einsum('nd,nd->n', v_s, a_s)
-        kappa.append((vv**(-3/2) * (vv * aa - va ** 2).sqrt()).sum().item())
-        torch.cuda.empty_cache()
+        #torch.cuda.empty_cache()
         _idx += batch_size
     torch.cuda.empty_cache()
-    return np.mean(kappa)
+    return torch.tensor(kappa)
 
-def get_extrinsic_curvature(network, curve_inputs=None, size_curve=None, batch_size=128, train_mode=True):
+def get_extrinsic_curvature_opt(network, curve_inputs=None, size_curve=None, batch_size=256, train_mode=True):
     if curve_inputs:
         theta, curve_input = curve_inputs
     else:
         theta, curve_input = get_curve_input(size_curve)
-    kappa = []
+    kappa = 0
     network = network.cuda()
     if train_mode:
         network.train()
@@ -99,14 +69,17 @@ def get_extrinsic_curvature(network, curve_inputs=None, size_curve=None, batch_s
         network.eval()
     network.zero_grad()
     _idx = 0
+    #print(curve_input.shape)
     while _idx < len(curve_input):
         output = network(curve_input[_idx:_idx+batch_size])
+        #output=output[1]
         output = output.reshape(output.size(0), -1)
         n, c = output.size()
         v_s = [] # 1st derivative
         a_s = [] # 2nd derivative
-        for coord in range(c):
-            v = autograd.grad(output[:, coord].sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
+        c_list = [np.random.randint(0, c) for _ in range(10)]
+        for index in c_list:
+            v = autograd.grad(output[:, index].sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
             a = autograd.grad(v.sum(), theta, create_graph=True, retain_graph=True)[0][_idx:_idx+batch_size] # batch size (of thetas)
             v_s.append(v.detach().clone())
             a_s.append(a.detach().clone())
@@ -115,14 +88,17 @@ def get_extrinsic_curvature(network, curve_inputs=None, size_curve=None, batch_s
         vv = torch.einsum('nd,nd->n', v_s, v_s)
         aa = torch.einsum('nd,nd->n', a_s, a_s)
         va = torch.einsum('nd,nd->n', v_s, a_s)
-        kappa.append((vv**(-3/2) * (vv * aa - va ** 2).sqrt()).sum().item())
-        torch.cuda.empty_cache()
+        #print(vv.shape, aa.shape, va.shape)
+        kappa += (vv**(-3/2) * (vv * aa - va ** 2).sqrt()).sum().item()
+        #print(kappa)
+        #torch.cuda.empty_cache()
         _idx += batch_size
     torch.cuda.empty_cache()
-    return np.mean(kappa)
+    return torch.tensor(kappa)
 
 
-def curve_complexity_differentiable(network, curve_inputs=None, size_curve=None, batch_size=1024, train_mode=True, need_graph=True, reduction='mean',
+
+def curve_complexity_differentiable(network, curve_inputs=None, size_curve=None, batch_size=32, train_mode=True, need_graph=True, reduction='mean',
                                     differentiable=False):
     # network.apply(bn_stop_tracking)
     if curve_inputs:
@@ -154,8 +130,8 @@ def curve_complexity_differentiable(network, curve_inputs=None, size_curve=None,
         gE = torch.einsum('nd,nd->n', jacobs, jacobs).sqrt()
         LE += gE.sum()
         torch.cuda.empty_cache()
-        if reduction == 'mean':
-            return LE / len(theta)
-        else:
-            return LE
+    if reduction == 'mean':
+        return LE / len(theta)
+    else:
+        return LE
 

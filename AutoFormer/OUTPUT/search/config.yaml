@@ -8,7 +8,7 @@ color_jitter: 0.4
 cooldown_epochs: 10
 cutmix: 1.0
 cutmix_minmax: null
-data_path: /home/hu15nagy/Documents/ImageNet_data/ImageNet_data
+data_path: imagenet
 data_set: IMNET
 decay_epochs: 30
 decay_rate: 0.1
