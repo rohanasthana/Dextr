@@ -1,4 +1,6 @@
 cd NASLib/
+conda create -n naslib  python=3.7
+conda activate naslib
 sed -i 's/Cython==0.29.37/Cython==3.0.11/' requirements.txt
 pip install --upgrade pip setuptools wheel
 pip install -e .
