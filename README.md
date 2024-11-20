@@ -2,12 +2,8 @@
 
 ## Correlation Experiments
 ### NASBench101, 301 and TransNASBench-micro
-- We use NASLib (https://github.com/automl/NASLib/tree/zerocost) for our correlation experiments on NASBench101, NASBench301, and TransNASBench-micro.
-- To reproduce our results for NB101, NB301 and TNB101-micro, follow the instructions from NASLib (https://github.com/automl/NASLib/tree/zerocost) to set up the experiment.
-- Copy all the subfolders of NASLib to the folder /NASLib/
-- Our proxy Dextr is implemented in the file NASLib/naslib/predictors/pruners/measures/dextr.py
-- Run the correlation experiments using scripts from the folder- NASLib/scripts/cluster/benchmarks
-
+- To setup the environment run `source setup_naslib.sh` 
+- To run the experiments for NASBench101, NASBench301 and TransNASBench-micro, run the following commands:
 ```bash
 bash NASLib/scripts/cluster/benchmarks/run_tnb101.sh correlation dextr #TransNASBench101-micro
 bash NASLib/scripts/cluster/benchmarks/run_nb101.sh correlation dextr #NASBench-101
@@ -15,8 +11,8 @@ bash NASLib/scripts/cluster/benchmarks/run_nb301.sh correlation dextr #NASBench-
 ```
 
 ### NASBench-201
-- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our NASBench201 experiments.
-- Run the following commands for NASBench201 experiments:
+- To run the experiments for NASBench-201, run the following command `source setup_nasbench201.sh`
+- Run the following commands to compute the correlation for the NASBench-201:
 ```bash
 cd NASBench201/correlation
 python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar10
@@ -27,7 +23,6 @@ python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
 ## NAS Experiments
 
 ### DARTS
-- Follow the MeCo repository (https://github.com/HamsterMimi/MeCo) to set up the environment for our DARTS experiments.
 - Run the following commands to search in the DARTS space:
 
 ```bash
@@ -38,8 +33,8 @@ bash exp_scripts/zerocostpt_darts_pipeline.sh
 - Train the searched network on ImageNet using this repository- (https://github.com/chenwydj/DARTS_evaluation)
 
 ### AutoFormer
-
-- Follow the TF-TAS repository (https://github.com/decemberzhou/TF_TAS/tree/main) to set up the environment for AutoFormer experiments.
+- To seutp the environment for AutoFormer experiments, run the following command `source setup_autoformer.sh`
+    - Download imagenet in the folder `AutoFormer/imagenet
 - Run the following commands for the AutoFormer experiments:
 
 ```bash
