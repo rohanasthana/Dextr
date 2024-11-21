@@ -15,6 +15,7 @@ bash NASLib/scripts/cluster/benchmarks/run_nb301.sh correlation dextr #NASBench-
 - Run the following commands to compute the correlation for the NASBench-201:
 ```bash
 cd NASBench201/correlation
+mkdir output
 python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar10
 python NAS_Bench_201.py --start 0 --end 1000 --dataset cifar100
 python NAS_Bench_201.py --start 0 --end 1000 --dataset ImageNet16-120
