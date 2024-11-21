@@ -2,12 +2,12 @@
 
 This anonymised repository contains the code for the CVPR submission- Dextr.
 
-![Image](https://github.com/dextrproxy/Dextr/blob/main/dextr_intro.png)
+![Image](https://github.com/rohanasthana/Dextr/blob/main/dextr_intro.png)
 
 ## Setup
 - Clone this repository using the command
 ``` bash
-git clone https://github.com/dextrproxy/Dextr.git
+git clone https://github.com/rohanasthana/Dextr.git
 ```
 
 ## Correlation Experiments
