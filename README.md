@@ -1,8 +1,7 @@
 # Dextr: Zero-Shot Neural Architecture Search with Singular Value Decomposition and Extrinsic Curvature
+Rohan Asthana, Joschua Conrad, Maurits Ortmanns, Vasileios Belagiannis
 
-This anonymised repository contains the code for the CVPR submission- Dextr.
-
-![Image](https://github.com/rohanasthana/Dextr/blob/main/dextr_intro.png)
+This repository contains the code for the paper titled "Dextr: Zero-Shot Neural Architecture Search with Singular Value Decomposition and Extrinsic Curvature"
 
 ## Setup
 - Clone this repository using the command
