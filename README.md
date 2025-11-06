@@ -58,3 +58,17 @@ bash search_autoformer.sh
 
 ```bash
 bash train_searched_result.sh
+```
+
+## Cite this Paper
+```bash
+@article{
+    asthana2025dextr,
+    title={Dextr: Zero-Shot Neural Architecture Search with Singular Value Decomposition and Extrinsic Curvature},
+    author={Rohan Asthana and Joschua Conrad and Maurits Ortmanns and Vasileios Belagiannis},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2025},
+    url={https://openreview.net/forum?id=X0vPof5DVh},
+    note={}
+}
